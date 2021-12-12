@@ -20,6 +20,6 @@ export class TodosService {
   }
 
   async updateStatus(id: string, completed: boolean): Promise<Todo> {
-    return this.todoModel.findByIdAndUpdate(id, { completed });
+    return this.todoModel.findByIdAndUpdate(id, { completed }, { new: true });
   }
 }

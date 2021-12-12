@@ -11,7 +11,7 @@ export class TodosResolver {
     return this.todosService.findAll();
   }
 
-  @Query(() => Todo)
+  @Query(() => Todo, { nullable: true })
   async todo(@Args('id', { type: () => ID }) id: string) {
     return this.todosService.findById(id);
   }
