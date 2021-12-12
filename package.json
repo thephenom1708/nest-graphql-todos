@@ -1,8 +1,8 @@
 {
   "name": "nest-graphql-todos",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "A minimal TODO application using NestJS and GraphQL",
+  "author": "Kaivalya Mendki",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
