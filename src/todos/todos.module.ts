@@ -5,7 +5,7 @@ import { Todo, TodoSchema } from './models/todo.model';
 import { TodosService } from './todos.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Todo.name, schema: TodoSchema }])],
-  providers: [TodosResolver, TodosService],
+	imports: [MongooseModule.forFeature([{ name: Todo.name, schema: TodoSchema }])],
+	providers: [TodosResolver, TodosService]
 })
 export class TodosModule {}
