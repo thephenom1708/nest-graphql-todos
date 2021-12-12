@@ -12,7 +12,7 @@ export class TodosService {
 	}
 
 	async findById(id: string): Promise<Todo> {
-		return this.todoModel.findById(id);
+		return this.todoModel.findById(id).exec();
 	}
 
 	async create(todo: CreateTodoInput): Promise<Todo> {
@@ -20,6 +20,6 @@ export class TodosService {
 	}
 
 	async updateStatus(id: string, completed: boolean): Promise<Todo> {
-		return this.todoModel.findByIdAndUpdate(id, { completed }, { new: true });
+		return this.todoModel.findByIdAndUpdate(id, { completed }, { new: true }).exec();
 	}
 }
