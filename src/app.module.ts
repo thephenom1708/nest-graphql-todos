@@ -7,6 +7,8 @@ import { TodosModule } from '@/src/todos/todos.module';
 import { AppService } from '@/src/app.service';
 import { AppController } from '@/src/app.controller';
 import { AuthService } from './auth/auth.service';
+import { AuthModule } from '@/src/auth/auth.module';
+import { UsersModule } from '@/src/users/users.module';
 
 @Module({
 	imports: [
@@ -23,6 +25,8 @@ import { AuthService } from './auth/auth.service';
 			}),
 			inject: [ConfigService]
 		}),
+		AuthModule,
+		UsersModule,
 		TodosModule
 	],
 	controllers: [AppController],

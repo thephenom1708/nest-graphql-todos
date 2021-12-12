@@ -3,10 +3,13 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Customer, CustomerDocument } from '@/src/users/models/customer.model';
 import { CreateCustomerInput } from '@/src/users/dto/create-customer.input';
+import { UsersService } from '@/src/users/users.service';
 
 @Injectable()
-export class CustomerService {
-	constructor(@InjectModel(Customer.name) private readonly customerModel: Model<CustomerDocument>) {}
+export class CustomerService extends UsersService {
+	constructor(@InjectModel(Customer.name) private readonly customerModel: Model<CustomerDocument>) {
+		super();
+	}
 
 	async findAll(): Promise<Array<Customer>> {
 		return this.customerModel.find().exec();

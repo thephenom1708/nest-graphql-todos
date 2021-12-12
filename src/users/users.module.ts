@@ -4,6 +4,7 @@ import { Customer, CustomerSchema } from '@/src/users/models/customer.model';
 import { Admin, AdminSchema } from '@/src/users/models/admin.model';
 import { CustomerService } from '@/src/users/customer.service';
 import { AdminService } from '@/src/users/admin.service';
+import { UsersService } from '@/src/users/users.service';
 
 @Module({
 	imports: [
@@ -18,6 +19,7 @@ import { AdminService } from '@/src/users/admin.service';
 			}
 		])
 	],
-	providers: [CustomerService, AdminService]
+	providers: [CustomerService, AdminService],
+	exports: [UsersService, CustomerService, AdminService]
 })
-export class UserModule {}
+export class UsersModule {}
