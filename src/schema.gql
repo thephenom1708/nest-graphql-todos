@@ -9,14 +9,41 @@ type Todo {
   completed: Boolean!
 }
 
+type User {
+  id: ID!
+  email: String!
+  password: String!
+  mobile: String!
+  firstName: String
+  lastName: String
+  isActive: Boolean!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
+  users: [User!]!
+  user(id: ID!): User
   todos: [Todo!]!
   todo(id: ID!): Todo
 }
 
 type Mutation {
+  createUser(user: CreateUserInput!): User!
   addTodo(todo: CreateTodoInput!): Todo!
   updateTodoStatus(updateTodoStatusInput: UpdateTodoStatusInput!): Todo!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  mobile: String!
+  firstName: String!
+  lastName: String!
 }
 
 input CreateTodoInput {

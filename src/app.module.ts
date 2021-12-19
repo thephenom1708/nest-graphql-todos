@@ -9,6 +9,7 @@ import { AppController } from '@/src/app.controller';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from '@/src/auth/auth.module';
 import { UsersModule } from '@/src/users/users.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
 	imports: [
@@ -22,6 +23,13 @@ import { UsersModule } from '@/src/users/users.module';
 		MongooseModule.forRootAsync({
 			useFactory: async (configService: ConfigService) => ({
 				uri: configService.get<string>('MONGODB_URI')
+			}),
+			inject: [ConfigService]
+		}),
+		JwtModule.registerAsync({
+			useFactory: async (configService: ConfigService) => ({
+				secret: configService.get<string>('JWT_SECRET'),
+				signOptions: { expiresIn: `${configService.get<number>('ACCESS_TOKEN_EXPIRY')}s` }
 			}),
 			inject: [ConfigService]
 		}),

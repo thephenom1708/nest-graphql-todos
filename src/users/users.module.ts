@@ -1,25 +1,19 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Customer, CustomerSchema } from '@/src/users/models/customer.model';
-import { Admin, AdminSchema } from '@/src/users/models/admin.model';
-import { CustomerService } from '@/src/users/customer.service';
-import { AdminService } from '@/src/users/admin.service';
 import { UsersService } from '@/src/users/users.service';
+import { UsersResolver } from '@/src/users/users.resolver';
+import { User, UserSchema } from '@/src/users/models/user.model';
 
 @Module({
 	imports: [
 		MongooseModule.forFeature([
 			{
-				name: Customer.name,
-				schema: CustomerSchema
-			},
-			{
-				name: Admin.name,
-				schema: AdminSchema
+				name: User.name,
+				schema: UserSchema
 			}
 		])
 	],
-	providers: [CustomerService, AdminService],
-	exports: [UsersService, CustomerService, AdminService]
+	providers: [UsersService, UsersResolver],
+	exports: [UsersService]
 })
 export class UsersModule {}
